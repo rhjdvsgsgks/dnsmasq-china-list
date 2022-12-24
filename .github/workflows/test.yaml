@@ -10,3 +10,6 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: bundle exec sus
+    - name: gen hash
+      run: |
+        sha256sum *
