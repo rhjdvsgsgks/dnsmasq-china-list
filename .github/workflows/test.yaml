@@ -12,4 +12,5 @@ jobs:
       run: bundle exec sus
     - name: gen hash
       run: |
-        sha256sum *
+        touch $(sha256sum accelerated-domains.china.conf)
+        ls -lah
