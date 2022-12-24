@@ -12,5 +12,10 @@ jobs:
       run: bundle exec sus
     - name: gen hash
       run: |
-        touch "$(sha1sum accelerated-domains.china.conf)"
-        ls -lah
+        touch "$(sha256sum accelerated-domains.china.conf)"
+        echo "hash=""$(sha256sum accelerated-domains.china.conf)" >> $GITHUB_ENV
+        cat $GITHUB_ENV
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{env.hash}}
+        path: /dev/null
