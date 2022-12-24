@@ -12,5 +12,5 @@ jobs:
       run: bundle exec sus
     - name: gen hash
       run: |
-        touch $(sha1sum accelerated-domains.china.conf)
+        touch "$(sha1sum accelerated-domains.china.conf)"
         ls -lah
