@@ -1,0 +1,21 @@
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v7
+    - run: make raw
+    - run: gh release delete nightly --cleanup-tag --yes || true
+      env:
+        GH_TOKEN: ${{ github.token }}
+    - uses: softprops/action-gh-release@v3
+      with:
+        tag_name: nightly
+        files: |
+          accelerated-domains.china.raw.txt
+          apple.china.raw.txt
+          bogus-nxdomain.china.raw.txt
+          google.china.raw.txt
